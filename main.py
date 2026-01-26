@@ -14,7 +14,7 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
-    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    player = Player(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0)
 
     # Infinite game loop
     while True:
@@ -27,13 +27,12 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
+        dt = clock.tick(60) / 1000 # ← ONE call, at the top or bottom
 
         screen.fill("black")
+        player.update(dt)
         player.draw(screen)
-        pygame.display.flip()
-
-        clock.tick(60)
-        dt = clock.tick() / 1000       
+        pygame.display.flip()   
 
 
 if __name__ == "__main__":
